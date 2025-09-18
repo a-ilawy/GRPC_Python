@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package todo;
+
+message ToDo {
+    int32 ID = 1;
+    string task = 2;
+    bool done = 3;
+}
+
+message CreateToDoRequest{
+    string task = 1;
+}
+
+message ToDoResponse{
+    ToDo todo = 1;
+}
+
+message getToDosResponse{
+    repeated ToDo todos = 1;
+}
+
+message MyVoid{}
+
+service ToDoService {
+    rpc CreateToDo (CreateToDoRequest) returns (ToDoResponse);
+    rpc GetToDos (MyVoid) returns (getToDosResponse);
+    rpc EditTodo (ToDo) returns (ToDoResponse);
+}
